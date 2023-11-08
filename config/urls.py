@@ -28,6 +28,7 @@ from config.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gamelists/', include("gamelists.urls")),
+    path('visited/', include("visited.urls")),
     path('ranking/', include("ranking.urls")),
     path('users/', include("users.urls")),
     path('games/', include("games.urls")),

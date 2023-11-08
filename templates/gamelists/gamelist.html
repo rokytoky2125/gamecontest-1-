@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="ko">
+{% extends 'base2.html' %}
+{% block content %}
 <body>
-    <h1>Gamelist</h1>
+    <h1>Dasahigh_GameContest</h1>
+    <h1>환영합니다.</h1>
     <div>{{ user.username }} (ID: {{ user.id }})</div>
     <p><a href="/users/logout/">로그아웃</a></p>
-    <p><a href="/ranking/rank/">랭킹</a></p>
     <h2>링크 태그</h2>
-    <a href="https://www.google.com">구글</a>
-    <p><a href="/games/ballgame/">게임1</a></p>
+    <a href="/visited/visited/">방명록</a>
+    <p><a href="/ranking/rank/">랭킹</a></p>
+    <h1>Gamelist</h1>
+    <p><a href="/games/ballgame/">BallGame</a></p>
 </body>
 </html>
+{% endblock %}

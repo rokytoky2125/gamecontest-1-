@@ -1,0 +1,61 @@
+{% extends 'base2.html' %}
+{% block content %}
+  <nav>
+    <h1>방명록</h1>
+    <a href="/users/logout/">로그아웃</a>
+    <a href="/gamelists/gamelist/">돌아가기</a>
+  </nav>
+  <div id="feeds" class="post-container">
+
+    {% for post in visited %}
+      <article class="post">
+        <header class="post-header">
+          {% if post.user.profile_image %}
+            <img src="{{ post.user.profile_image.url }}">
+          {% endif %}
+          <span>{{ post.user.username }}</span>
+        </header>
+
+        <div class="post-images splide">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {% for image in post.postimage_set.all %}
+                {% if image.photo %}
+                <li class="splide__slide">
+                  <img src="{{ image.photo.url }}">
+                </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="post-content">
+          {{ post.content|linebreaksbr }}
+        </div>
+
+        <div class="post-comments">
+          <ul>
+          {% for comment in post.comment_set.all %}
+            <li>
+              <span>{{ comment.user.username }}</span>
+              <span>{{ comment.content }}</span>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+        <small>{{ post.created }}</small>
+        <div class="post-comment-create">
+          <input type="text" placeholder="댓글 달기...">
+          <button type = "submit">게시</button>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <script>
+    const elms = document.getElementsByClassName('splide')
+    for (let i = 0; i < elms.length; i++) {
+      new Splide(elms[i]).mount();
+     }
+  </script>
+{% endblock %}
